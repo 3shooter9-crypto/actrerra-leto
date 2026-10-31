@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Теннисное лето 2027 — серия турниров РТТ | ТК «Астерра», Севастополь</title>
+<meta name="description" content="Теннисное лето 2027 — серия из 22 турниров РТТ в Севастополе: 20 турниров, 2 фестиваля, финал серии с призовым фондом. Заявка онлайн, календарь, зачёт серии.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='42' fill='%23a8e04a'/></svg>">
+<style>
+  :root{
+    --green-dark:#123d2b; --green:#1c5c40; --lime:#a8e04a; --lime-soft:#e8f6d4;
+    --ink:#14231c; --muted:#5a6b60; --bg:#f7faf5; --white:#ffffff;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Segoe UI',Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+
+  /* Шапка */
+  header{position:sticky;top:0;background:var(--white);box-shadow:0 2px 12px rgba(18,61,43,.08);z-index:50}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;max-width:1080px;margin:0 auto}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--green-dark);text-decoration:none}
+  .logo .ball{width:38px;height:38px;flex:none}
+  .logo small{display:block;font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+  nav a{color:var(--ink);text-decoration:none;font-size:14.5px;font-weight:600;margin-left:20px}
+  nav a:hover{color:var(--green)}
+  .nav-cta{background:var(--lime);color:var(--green-dark)!important;padding:8px 18px;border-radius:22px}
+  @media(max-width:860px){ nav{display:none} .burger{display:block!important} }
+  .burger{display:none;background:none;border:2px solid var(--green-dark);border-radius:8px;font-size:20px;padding:4px 10px;cursor:pointer;color:var(--green-dark)}
+  .mobile-menu{display:none;flex-direction:column;gap:4px;padding:10px 20px 16px;background:var(--white)}
+  .mobile-menu a{padding:10px;border-bottom:1px solid #eef2ec;text-decoration:none;color:var(--ink);font-weight:600}
+  .mobile-menu.open{display:flex}
+
+  /* Первый экран */
+  .hero{background:linear-gradient(135deg,var(--green-dark) 0%,var(--green) 70%);color:#fff;padding:72px 20px 64px;position:relative;overflow:hidden}
+  .hero::after{content:'';position:absolute;right:-80px;top:-60px;width:340px;height:340px;border-radius:50%;background:rgba(168,224,74,.12)}
+  .hero-inner{max-width:1080px;margin:0 auto;position:relative;z-index:1}
+  .tag{display:inline-block;background:rgba(168,224,74,.18);border:1px solid rgba(168,224,74,.5);color:var(--lime);font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:6px 14px;border-radius:20px;margin-bottom:18px}
+  h1{font-size:clamp(34px,6vw,58px);line-height:1.1;margin-bottom:14px}
+  .hero p{font-size:clamp(16px,2.2vw,20px);max-width:640px;opacity:.92;margin-bottom:28px}
+  .btn{display:inline-block;text-decoration:none;font-weight:700;border-radius:28px;padding:14px 30px;font-size:16px;margin:0 12px 12px 0;transition:transform .15s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-lime{background:var(--lime);color:var(--green-dark)}
+  .btn-ghost{border:2px solid rgba(255,255,255,.6);color:#fff}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:44px}
+  .stat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:18px 14px;text-align:center}
+  .stat b{display:block;font-size:clamp(24px,3.4vw,36px);color:var(--lime)}
+  .stat span{font-size:13px;opacity:.85}
+  @media(max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+  /* Секции */
+  section{padding:64px 0}
+  h2{font-size:clamp(26px,3.6vw,36px);color:var(--green-dark);margin-bottom:8px}
+  .sub{color:var(--muted);margin-bottom:32px;max-width:680px}
+  .rule{width:64px;height:5px;background:var(--lime);border-radius:3px;margin:14px 0 26px}
+
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:860px){.cards{grid-template-columns:1fr}}
+  .card{background:var(--white);border-radius:16px;padding:26px;box-shadow:0 4px 16px rgba(18,61,43,.06)}
+  .card h3{color:var(--green-dark);margin-bottom:8px;font-size:19px}
+  .card p{color:var(--muted);font-size:15px}
+
+  /* Календарь */
+  .tbl-wrap{overflow-x:auto;background:var(--white);border-radius:16px;box-shadow:0 4px 16px rgba(18,61,43,.06)}
+  table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:560px}
+  th{background:var(--green-dark);color:#fff;text-align:left;padding:12px 14px;font-size:13px;letter-spacing:.04em;text-transform:uppercase}
+  td{padding:11px 14px;border-bottom:1px solid #eef2ec}
+  tr.hl td{background:var(--lime-soft);font-weight:600}
+  tr.gold td{background:#f4e9c9;font-weight:700}
+  .badge{display:inline-block;font-size:11.5px;font-weight:700;padding:3px 10px;border-radius:12px}
+  .b-fest{background:var(--lime);color:var(--green-dark)}
+  .b-fin{background:#f0b429;color:#4a3305}
+  .b-rtt{background:#e3ece6;color:var(--green-dark)}
+
+  /* Финал */
+  .final{background:linear-gradient(135deg,var(--green-dark),var(--green));color:#fff;border-radius:20px;padding:44px 36px;margin-top:8px}
+  .final h2{color:#fff}
+  .final .sub{color:rgba(255,255,255,.8)}
+  .prizes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:26px 0}
+  .prize{background:rgba(255,255,255,.1);border:1px solid rgba(168,224,74,.4);border-radius:14px;padding:22px;text-align:center}
+  .prize b{font-size:clamp(24px,3.4vw,34px);color:var(--lime);display:block}
+  .prize span{font-size:14px;opacity:.85}
+  @media(max-width:700px){.prizes{grid-template-columns:1fr}}
+
+  /* Очки */
+  .points{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0 30px}
+  .pt{background:var(--white);border:2px solid var(--lime);border-radius:14px;padding:14px 22px;text-align:center;min-width:96px}
+  .pt b{font-size:24px;color:var(--green-dark);display:block}
+  .pt span{font-size:12.5px;color:var(--muted)}
+
+  /* Партнёры */
+  .packs{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  @media(max-width:960px){.packs{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:600px){.packs{grid-template-columns:1fr}}
+  .pack{background:var(--white);border-radius:16px;padding:24px;box-shadow:0 4px 16px rgba(18,61,43,.06);display:flex;flex-direction:column}
+  .pack h3{color:var(--green-dark);font-size:18px}
+  .pack .price{font-size:26px;font-weight:800;color:var(--green-dark);margin:10px 0}
+  .pack ul{list-style:none;margin:6px 0 16px;flex:1}
+  .pack li{font-size:14px;color:var(--muted);padding:5px 0 5px 22px;position:relative}
+  .pack li::before{content:'✓';position:absolute;left:0;color:var(--green);font-weight:700}
+  .pack-top{border:2px solid var(--lime)}
+
+  /* Заявка */
+  .apply{background:var(--white);border-radius:20px;padding:40px;box-shadow:0 4px 16px rgba(18,61,43,.06);text-align:center}
+  .apply p{color:var(--muted);max-width:560px;margin:0 auto 22px}
+  /* Подключается Яндекс Форма: <iframe src="..." width="100%" height="600" frameborder="0"></iframe> */
+
+  /* Контакты */
+  .contacts{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:860px){.contacts{grid-template-columns:1fr}}
+  .contact-item{background:var(--white);border-radius:16px;padding:24px;box-shadow:0 4px 16px rgba(18,61,43,.06)}
+  .contact-item h3{color:var(--green-dark);font-size:17px;margin-bottom:10px}
+  .contact-item a{color:var(--green);font-weight:700;text-decoration:none}
+  .contact-item small{display:block;color:var(--muted);font-size:13px;margin-top:4px}
+
+  footer{background:var(--green-dark);color:rgba(255,255,255,.75);padding:36px 20px;text-align:center;font-size:14px}
+  footer .lime{color:var(--lime);font-weight:700}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="#top">
+      <svg class="ball" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#a8e04a"/><path d="M15 30 Q50 55 85 30" fill="none" stroke="#123d2b" stroke-width="4"/><path d="M15 70 Q50 45 85 70" fill="none" stroke="#123d2b" stroke-width="4"/></svg>
+      <span>ТК «Астерра»<small>Теннисное лето 2027</small></span>
+    </a>
+    <nav>
+      <a href="#calendar">Календарь</a>
+      <a href="#rules">Регламент</a>
+      <a href="#final">Финал серии</a>
+      <a href="#partners">Партнёрам</a>
+      <a href="#contacts">Контакты</a>
+      <a href="#apply" class="nav-cta">Заявиться</a>
+    </nav>
+    <button class="burger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">☰</button>
+  </div>
+  <div class="mobile-menu">
+    <a href="#calendar">Календарь</a>
+    <a href="#rules">Регламент</a>
+    <a href="#final">Финал серии</a>
+    <a href="#partners">Партнёрам</a>
+    <a href="#contacts">Контакты</a>
+    <a href="#apply" style="color:#123d2b;background:#a8e04a;border-radius:22px;border:none;text-align:center">Заявиться</a>
+  </div>
+</header>
+
+<!-- ПЕРВЫЙ ЭКРАН -->
+<div class="hero" id="top">
+  <div class="hero-inner">
+    <span class="tag">Серия турниров РТТ · Севастополь · май — октябрь 2027</span>
+    <h1>Теннисное лето<br>2027</h1>
+    <p>Крупнейшая летняя теннисная серия Крыма: 22 события, шесть возрастных категорий и финал серии с призовым фондом. Играй всё лето — выходи в топ-8 своей категории.</p>
+    <a class="btn btn-lime" href="#apply">Заявиться на турнир</a>
+    <a class="btn btn-ghost" href="#calendar">Смотреть календарь</a>
+    <div class="stats">
+      <div class="stat"><b>22</b><span>события сезона</span></div>
+      <div class="stat"><b>~900</b><span>участников</span></div>
+      <div class="stat"><b>12</b><span>категорий зачёта</span></div>
+      <div class="stat"><b>420 000 ₽</b><span>призовой фонд финала</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- О СЕРИИ -->
+<section>
+  <div class="wrap">
+    <h2>О серии</h2>
+    <div class="rule"></div>
+    <p class="sub">Серия объединяет турниры РТТ, два больших фестиваля «Теннисная долина» и финал серии 9–10 октября. Организаторы — АНО «Спорт решение» и теннисный клуб «Астерра» (Севастополь).</p>
+    <div class="cards">
+      <div class="card"><h3>🎾 20 турниров РТТ</h3><p>Еженедельные турниры с зачётом очков в серию: блоки «Память победы», Кубок ГК «Аквамарин», «Бастион», «Бриз», «Маяк» и Кубок «Астерры».</p></div>
+      <div class="card"><h3>🏆 2 фестиваля «Теннисная долина»</h3><p>Праздничные события 1–2 мая и в августе: старт сезона и кульминация лета. Семьи, болельщики, зоны отдыха и партнёрские активности.</p></div>
+      <div class="card"><h3>👑 Финал серии</h3><p>9–10 октября встречаются топ-8 каждой из 12 категорий. Игра без взноса, розыгрыш призового фонда 420 000 ₽ и церемония награждения.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- КАЛЕНДАРЬ -->
+<section id="calendar" style="background:#eef4ea">
+  <div class="wrap">
+    <h2>Календарь сезона</h2>
+    <div class="rule"></div>
+    <p class="sub">Даты подтверждённых блоков указаны; уточнения публикуем в сообществе VK после каждого этапа. Фестивали и Финал в зачёт очков не входят.</p>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>Даты</th><th>Событие</th><th>Статус</th></tr>
+        <tr class="hl"><td>1–2 мая</td><td>Фестиваль «Теннисная долина» (весна)</td><td><span class="badge b-fest">Фестиваль</span></td></tr>
+        <tr><td>май</td><td>«Память победы» — турниры РТТ №18–21</td><td><span class="badge b-rtt">РТТ · зачёт</span></td></tr>
+        <tr><td>июнь</td><td>Кубок ГК «Аквамарин» — №23–24</td><td><span class="badge b-rtt">РТТ · зачёт</span></td></tr>
+        <tr><td>июнь — июль</td><td>«Бастион» — №25–28</td><td><span class="badge b-rtt">РТТ · зачёт</span></td></tr>
+        <tr><td>июль</td><td>«Бриз» — №29–32</td><td><span class="badge b-rtt">РТТ · зачёт</span></td></tr>
+        <tr><td>август</td><td>Фестиваль «Теннисная долина» (лето)</td><td><span class="badge b-fest">Фестиваль</span></td></tr>
+        <tr><td>август</td><td>«Маяк» — №33–35</td><td><span class="badge b-rtt">РТТ · зачёт</span></td></tr>
+        <tr><td>сентябрь</td><td>Кубок «Астерры» — №38–40</td><td><span class="badge b-rtt">РТТ · зачёт</span></td></tr>
+        <tr class="gold"><td>1 октября</td><td>Публикация списков топ-8 в VK</td><td><span class="badge b-fin">Отбор</span></td></tr>
+        <tr class="gold"><td>9–10 октября</td><td>Финал серии + церемония награждения</td><td><span class="badge b-fin">Финал</span></td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- РЕГЛАМЕНТ -->
+<section id="rules">
+  <div class="wrap">
+    <h2>Зачёт серии и регламент</h2>
+    <div class="rule"></div>
+    <p class="sub">В каждой из 12 категорий (6 возрастных групп × мужчины/женщины) очки считаются по единой системе. Для допуска к зачёту — минимум три сыгранных турнира серии.</p>
+    <div class="points">
+      <div class="pt"><b>100</b><span>победитель</span></div>
+      <div class="pt"><b>70</b><span>финалист</span></div>
+      <div class="pt"><b>40</b><span>полуфинал</span></div>
+      <div class="pt"><b>20</b><span>четвертьфинал</span></div>
+      <div class="pt"><b>10</b><span>1/8 финала</span></div>
+      <div class="pt"><b>5</b><span>участие</span></div>
+    </div>
+    <div class="cards">
+      <div class="card"><h3>Заявки и взносы</h3><p>Заявки принимаются до 18:00 среды игровой недели, жеребьёвка — в четверг. Взнос: 5 000 ₽ за разряд, фестиваль — 1 500 ₽ с человека. Отмена до жеребьёвки — без штрафа.</p></div>
+      <div class="card"><h3>Формат матчей</h3><p>Два сета с тай-брейком, при счёте 1:1 — тай-брейк до 10. В детских группах — обязательный дополнительный турнир для проигравших в первом круге.</p></div>
+      <div class="card"><h3>Промежуточный зачёт</h3><p>Таблица очков обновляется в сообществе VK после каждого блока. При равенстве очков выше игрок с лучшим личным результатом серии.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ФИНАЛ -->
+<section id="final" style="background:#eef4ea">
+  <div class="wrap">
+    <h2>Финал серии</h2>
+    <div class="rule"></div>
+    <div class="final">
+      <span class="tag">9–10 октября 2027</span>
+      <h2 style="font-size:clamp(24px,3.4vw,32px)">Топ-8 каждой категории. Один день. Без взноса.</h2>
+      <p class="sub" style="margin-bottom:8px">По итогам серии игроки №1–8 в каждой из 12 категорий выходят в финал. Списки публикуем в VK 1 октября. Формат: четвертьфиналы → полуфиналы → матч за 3-е место → финал. При неявке место переходит игроку №9, замены — до пятницы 18:00.</p>
+      <div class="prizes">
+        <div class="prize"><b>20 000 ₽</b><span>1 место в категории</span></div>
+        <div class="prize"><b>10 000 ₽</b><span>2 место в категории</span></div>
+        <div class="prize"><b>5 000 ₽</b><span>3 место в категории</span></div>
+      </div>
+      <p style="opacity:.85;font-size:14.5px">Призовой фонд — 420 000 ₽. Плюс памятные призы от партнёров всем финалистам и номинации «Открытие сезона» и «Приз зрительских симпатий».</p>
+    </div>
+  </div>
+</section>
+
+<!-- ПАРТНЁРАМ -->
+<section id="partners">
+  <div class="wrap">
+    <h2>Партнёрам</h2>
+    <div class="rule"></div>
+    <p class="sub">900+ участников и их семьи, 22 события с мая по октябрь, ваш бренд на каждом турнире и в финале серии. Полный бриф отправим по запросу. Вхождение до февраля даёт партнёру максимум охвата в рекламной кампании.</p>
+    <div class="packs">
+      <div class="pack"><h3>Бартер</h3><div class="price">от 0 ₽</div><ul><li>Призовой инвентарь</li><li>Упоминание в анонсах</li><li>Логотип на стенде</li></ul></div>
+      <div class="pack"><h3>Номинация</h3><div class="price">25 000 ₽</div><ul><li>Именная номинация на турнирах</li><li>Вручение приза партнёром</li><li>Логотип в постах VK</li></ul></div>
+      <div class="pack"><h3>Партнёр сезона</h3><div class="price">100 000 ₽</div><ul><li>Логотип на всех афишах</li><li>Баннер на кортах</li><li>Упоминание в таргете и посевах</li></ul></div>
+      <div class="pack pack-top"><h3>Титульный</h3><div class="price">300 000 ₽</div><ul><li>Название в брендинге серии</li><li>Первая позиция во всех материалах</li><li>Презентация на Финале серии</li></ul></div>
+    </div>
+    <p style="margin-top:26px"><a class="btn btn-lime" href="#contacts">Запросить бриф</a></p>
+  </div>
+</section>
+
+<!-- ЗАЯВКА -->
+<section id="apply" style="background:#eef4ea">
+  <div class="wrap">
+    <h2>Заявка на участие</h2>
+    <div class="rule"></div>
+    <div class="apply">
+      <p>Оставьте заявку — администратор свяжется с вами и подтвердит участие. Заявки закрываются в 18:00 среды игровой недели.</p>
+      <!-- Здесь подключается Яндекс Форма или VK-форма: вставить iframe-код формы -->
+      <a class="btn btn-lime" href="tel:+79782379600">Позвонить в регистратуру</a>
+      <a class="btn btn-ghost" href="https://vk.com/" target="_blank" style="border-color:#1c5c40;color:#123d2b">Написать в VK</a>
+    </div>
+  </div>
+</section>
+
+<!-- КОНТАКТЫ -->
+<section id="contacts">
+  <div class="wrap">
+    <h2>Контакты</h2>
+    <div class="rule"></div>
+    <div class="contacts">
+      <div class="contact-item"><h3>Теннисный клуб «Астерра»</h3><a href="tel:+79782379600">8 978 237-96-00</a> — регистратура<small>г. Севастополь, адрес кортов — по запросу</small></div>
+      <div class="contact-item"><h3>Коммерция и партнёрство</h3>Марков А.А. — директор АНО «Спорт решение»<small>условия партнёрства, пакеты, бриф</small></div>
+      <div class="contact-item"><h3>PR и публикации</h3>Помогаева Т.Е. — PR-менеджер<small>согласование публикаций и информационное сопровождение</small></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p><span class="lime">Теннисное лето 2027</span> — АНО «Спорт решение» × ТК «Астерра»</p>
+  <p style="margin-top:6px">Севастополь · Серия турниров РТТ · май — октябрь 2027</p>
+</footer>
+
+<script>
+  // Закрываем мобильное меню после перехода
+  document.querySelectorAll('.mobile-menu a').forEach(a=>a.addEventListener('click',()=>document.querySelector('.mobile-menu').classList.remove('open')));
+</script>
+</body>
+</html>
